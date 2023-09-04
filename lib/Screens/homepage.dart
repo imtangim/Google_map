@@ -25,6 +25,7 @@ class Homepage extends ConsumerStatefulWidget {
 class _HomepageState extends ConsumerState<Homepage> {
   // default location
   LatLng _userLocation = const LatLng(37.42796133580664, -122.085749655962);
+  final List _location = [];
 //phone location
   Location location = Location();
   @override
@@ -76,7 +77,7 @@ class _HomepageState extends ConsumerState<Homepage> {
       }
       _userLocation = LatLng(latitude!, longitude!);
       _updateCameraPosition();
-      setUserMarker(LatLng(latitude, longitude));
+
       if (kDebugMode) {
         print("After update: $_userLocation");
       }
@@ -344,6 +345,7 @@ class _HomepageState extends ConsumerState<Homepage> {
                   child: InkWell(
                     onTap: () {
                       _getLocation();
+                      setUserMarker(_userLocation);
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 5),
