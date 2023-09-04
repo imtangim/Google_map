@@ -77,6 +77,7 @@ class _HomepageState extends ConsumerState<Homepage> {
       }
       _userLocation = LatLng(latitude!, longitude!);
       _updateCameraPosition();
+      setUserMarker(LatLng(latitude, longitude));
 
       if (kDebugMode) {
         print("After update: $_userLocation");
@@ -134,7 +135,7 @@ class _HomepageState extends ConsumerState<Homepage> {
             const Offset(0.0, 0.0), const Offset(iconSize, iconSize)));
 
     final Paint paintCircle = Paint()
-      ..color = Colors.blue // Set the color to blue
+      ..color = Colors.red // Set the color to blue
       ..style = PaintingStyle.fill;
 
     // Draw a blue circle on a transparent background
@@ -344,8 +345,8 @@ class _HomepageState extends ConsumerState<Homepage> {
                   right: 16,
                   child: InkWell(
                     onTap: () {
-                      _getLocation();
                       setUserMarker(_userLocation);
+                      _updateCameraPosition();
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 5),
